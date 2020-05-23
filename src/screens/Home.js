@@ -6,7 +6,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.container}>
         <Text style={styles.title}>Trek</Text>
         <Text/>
-        <Text style={styles.description}>Explore your community through randomized routes.</Text>
+        <Text style={styles.description}>Explore your community through personalized routes.</Text>
         <Text/>
         <View style={styles.myButton}>
         <Button

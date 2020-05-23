@@ -88,6 +88,8 @@ const TrekRouteScreen = ({ route, navigation }) => {
           strokeWidth={5} />}
       </MapView>
       <View style={styles.myButton2}>
+      <View style={{backgroundColor: '#87BC5E', paddingVertical: 4,
+    paddingHorizontal: 10,}}>
       <Button
           title="Done Trekking"
           color="#FFFFFF"
@@ -96,19 +98,26 @@ const TrekRouteScreen = ({ route, navigation }) => {
           })}
         />
       </View>
+      </View>
       <View style={styles.myButton}>
+        <View style={{backgroundColor: '#5eafbc', paddingVertical: 2,
+    paddingHorizontal: 10,}}>
         <Button
           style = {{alignSelf: 'flex-start'}}
-          title="Generate New Route"
+          title="Get New Route"
           color="#FFFFFF"
           onPress={() => setCount(count+1)}
         />
+        </View>
+        <View style={{backgroundColor: '#87BC5E', paddingVertical: 2,
+    paddingHorizontal: 10,}}>
         <Button
           style = {{alignSelf: 'baseline'}}
           title="Start Trekking"
           color="#FFFFFF"
           onPress={() => handleGetDirections(latitude, longitude, distance)}
         />
+        </View>
       </View>
     </View>
   );
@@ -119,7 +128,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius:25,
-    backgroundColor:'#87BC5E',
     position: 'absolute',
     alignSelf: 'center',
     top: 560,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
@@ -128,7 +136,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius:25,
-    backgroundColor:'#87BC5E',
     position: 'absolute',
     alignSelf: 'center',
     top: 50,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
