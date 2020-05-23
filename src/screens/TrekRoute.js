@@ -59,6 +59,7 @@ const handleGetDirections = async (lat, lon, d) => {
 
 const TrekRouteScreen = ({ route, navigation }) => {
   const [coords, setCoords] = useState([]);
+  const [count, setCount] = useState(0);
 
   const { latitude } = route.params;
   const { longitude } = route.params;
@@ -68,7 +69,7 @@ const TrekRouteScreen = ({ route, navigation }) => {
     getDirection(latitude, longitude, distance)
       .then(coords => setCoords(coords))
       .catch(err => console.log("Something went wrong"));
-  }, []);
+  }, [count]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -78,8 +79,8 @@ const TrekRouteScreen = ({ route, navigation }) => {
         initialRegion={{
           latitude: latitude,
           longitude: longitude,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1
+          latitudeDelta: 0.0522,
+          longitudeDelta: 0.0121
         }}
       >
         {coords.length > 0 && <Polyline coordinates={coords} strokeColor="#000"
@@ -97,6 +98,13 @@ const TrekRouteScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.myButton}>
         <Button
+          style = {{alignSelf: 'flex-start'}}
+          title="Generate New Route"
+          color="#FFFFFF"
+          onPress={() => setCount(count+1)}
+        />
+        <Button
+          style = {{alignSelf: 'baseline'}}
           title="Start Trekking"
           color="#FFFFFF"
           onPress={() => handleGetDirections(latitude, longitude, distance)}

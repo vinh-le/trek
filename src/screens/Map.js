@@ -7,10 +7,11 @@ import * as Location from 'expo-location';
 import getDirections from "react-native-google-maps-directions";
 
 
-function MapScreen({ navigation }) {
+function MapScreen({ navigation, route }) {
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [coords, setCoords] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -23,6 +24,12 @@ function MapScreen({ navigation }) {
       setLocation(location);
     })();
   }, []);
+
+  useEffect(() => {
+    if (route.params?.coordinates) {
+      console.log(route.params.coordinates);
+    }
+  }, [route.params?.coordinates]);
 
   var lat = 0, lon = 0;
   if (location) {
