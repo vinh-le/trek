@@ -32,7 +32,7 @@ function TrekScreen({ navigation }) {
         <Button
           title="Generate Trek"
           color="#FFFFFF"
-          onPress={() => navigation.navigate('Map')}
+          onPress={() => navigation.navigate('TrekRoute')}
         />
         </View>
     </View>

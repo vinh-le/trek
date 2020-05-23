@@ -1,8 +1,10 @@
 import { Button, View, Text } from 'react-native';
 import MapView from "react-native-maps";
+import Polyline from "react-native-maps";
 import { StyleSheet} from "react-native";
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
+import getDirections from "react-native-google-maps-directions";
 
 
 function MapScreen({ navigation }) {
@@ -26,7 +28,6 @@ function MapScreen({ navigation }) {
   if (location) {
     lon = location["coords"]["longitude"];
     lat = location["coords"]["latitude"];
-    
   }
   return (
     <View style={{ flex: 1 }}>
@@ -40,8 +41,16 @@ function MapScreen({ navigation }) {
           longitude: lon,
           latitudeDelta: 0.0522,
           longitudeDelta: 0.0121
-        }}
-      />
+        }}>
+         <Polyline
+          coordinates={[
+            { latitude: 33.082050, longitude: -96.751740},
+            { latitude: 33.083500, longitude: -96.767740}
+          ]}
+          strokeColor="#00f"
+          fillColor="rgba(255,0,0,0.5)"
+          strokeWidth={4}/>
+        </MapView>
       <View style={styles.myButton}>
         <Button
           title="Start New Trek"
