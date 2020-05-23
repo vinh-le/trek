@@ -83,9 +83,18 @@ const TrekRouteScreen = ({ route, navigation }) => {
         }}
       >
         {coords.length > 0 && <Polyline coordinates={coords} strokeColor="#000"
-          fillColor="rgba(255,0,0,0.5)"
-          strokeWidth={4} />}
+          fillColor="#3155A6"
+          strokeWidth={5} />}
       </MapView>
+      <View style={styles.myButton2}>
+      <Button
+          title="Done Trekking"
+          color="#FFFFFF"
+          onPress={() => navigation.navigate('Map', {
+            coordinates: coords
+          })}
+        />
+      </View>
       <View style={styles.myButton}>
         <Button
           title="Start Trekking"
@@ -106,6 +115,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     top: 560,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
+  },
+  myButton2:{
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius:25,
+    backgroundColor:'#87BC5E',
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 50,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
   }
 });
 
