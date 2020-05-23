@@ -23,11 +23,15 @@ const getDirections = async (lat, lon, d) => {
   }
 };
 
-const TrekRouteScreen = () => {
+const TrekRouteScreen = ({ route, navigation }) => {
   const [coords, setCoords] = useState([]);
 
+  const { latitude } = route.params;
+  const { longitude } = route.params;
+  const { distance } = route.params;
+
   useEffect(() => {
-    getDirections("33.081650", "-96.754750", "1")
+    getDirections(latitude, longitude, distance)
       .then(coords => setCoords(coords))
       .catch(err => console.log("Something went wrong"));
   }, []);
@@ -38,8 +42,8 @@ const TrekRouteScreen = () => {
         style={{ flex: 1 }}
         provider = "google"
         initialRegion={{
-          latitude: 33.082050,
-          longitude: -96.751740,
+          latitude: latitude,
+          longitude: longitude,
           latitudeDelta: 0.1,
           longitudeDelta: 0.1
         }}

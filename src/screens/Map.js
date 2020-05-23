@@ -42,20 +42,15 @@ function MapScreen({ navigation }) {
           latitudeDelta: 0.0522,
           longitudeDelta: 0.0121
         }}>
-         <Polyline
-          coordinates={[
-            { latitude: 33.082050, longitude: -96.751740},
-            { latitude: 33.083500, longitude: -96.767740}
-          ]}
-          strokeColor="#00f"
-          fillColor="rgba(255,0,0,0.5)"
-          strokeWidth={4}/>
         </MapView>
       <View style={styles.myButton}>
         <Button
           title="Start New Trek"
           color="#FFFFFF"
-          onPress={() => navigation.navigate('Trek')}
+          onPress={() => navigation.navigate('Trek', {
+            latitude: lat,
+            longitude: lon
+          })}
         />
       </View>
     </View>

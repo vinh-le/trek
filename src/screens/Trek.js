@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Button, View, Text, TextInput } from 'react-native';
 
-function TrekScreen({ navigation }) {
+function TrekScreen({ route, navigation }) {
 
   const [text, setText] = useState('');
+  const { latitude } = route.params;
+  const { longitude } = route.params;
 
   return (
-    // <View style={{padding: 10}}>
-    //   <TextInput
-    //     style={{height: 40}}
-    //     placeholder="Type here to translate!"
-    //     onChangeText={text => setText(text)}
-    //     defaultValue={text}
-    //   />
-    //   <Text style={{padding: 10, fontSize: 42}}>
-    //     {text.split(' ').map((word) => word && '🍕').join(' ')}
-    //   </Text>
-    // </View>
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={styles.description}>What is your target distance?</Text>
       <Text/>
@@ -32,7 +23,11 @@ function TrekScreen({ navigation }) {
         <Button
           title="Generate Trek"
           color="#FFFFFF"
-          onPress={() => navigation.navigate('TrekRoute')}
+          onPress={() => navigation.navigate('TrekRoute', {
+            latitude: latitude,
+            longitude: longitude,
+            distance: text
+          })}
         />
         </View>
     </View>
