@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { Button, View, Text } from "react-native";
 import MapView, { Polyline } from "react-native-maps";
 import { decode } from "@mapbox/polyline";
 import TrekScreen from "./Trek";
+import { StyleSheet} from "react-native";
+import getDirections from "react-native-google-maps-directions";
 
-const getDirections = async (lat, lon, d) => {
+const getDirection = async (lat, lon, d) => {
   try {
     let resp = await fetch(
       `https://trek-api.herokuapp.com/route/${lat}/${lon}/${d}`
@@ -23,6 +25,38 @@ const getDirections = async (lat, lon, d) => {
   }
 };
 
+const handleGetDirections = async (lat, lon, d) => {
+  new_lat = (lat) + (d) / 69
+  const data = {
+    source: {
+      latitude: lat,
+      longitude: lon
+    },
+    destination: {
+      latitude: lat,
+      longitude: lon
+    },
+    params: [
+      {
+        key: "travelmode",
+        value: "walking"
+      },
+      {
+        key: "dir_action",
+        value: "navigate"
+      }
+    ],
+    waypoints: [
+      {
+        latitude: new_lat,
+        longitude: lon
+      }
+    ]
+  }
+
+  getDirections(data)
+}
+
 const TrekRouteScreen = ({ route, navigation }) => {
   const [coords, setCoords] = useState([]);
 
@@ -31,13 +65,13 @@ const TrekRouteScreen = ({ route, navigation }) => {
   const { distance } = route.params;
 
   useEffect(() => {
-    getDirections(latitude, longitude, distance)
+    getDirection(latitude, longitude, distance)
       .then(coords => setCoords(coords))
       .catch(err => console.log("Something went wrong"));
   }, []);
 
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <MapView
         style={{ flex: 1 }}
         provider = "google"
@@ -52,9 +86,28 @@ const TrekRouteScreen = ({ route, navigation }) => {
           fillColor="rgba(255,0,0,0.5)"
           strokeWidth={4} />}
       </MapView>
-    </>
+      <View style={styles.myButton}>
+        <Button
+          title="Start Trekking"
+          color="#FFFFFF"
+          onPress={() => handleGetDirections(latitude, longitude, distance)}
+        />
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  myButton:{
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius:25,
+    backgroundColor:'#87BC5E',
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 560,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
+  }
+});
 
 export default TrekRouteScreen;
 

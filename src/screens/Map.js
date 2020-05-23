@@ -42,7 +42,7 @@ function MapScreen({ navigation }) {
           latitudeDelta: 0.0522,
           longitudeDelta: 0.0121
         }}>
-        </MapView>
+      </MapView>
       <View style={styles.myButton}>
         <Button
           title="Start New Trek"
