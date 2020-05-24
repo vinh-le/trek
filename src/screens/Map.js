@@ -1,6 +1,5 @@
 import { Button, View, Text } from 'react-native';
-import MapView from "react-native-maps";
-import Polyline from "react-native-maps";
+import MapView, { Polyline } from "react-native-maps";
 import { StyleSheet} from "react-native";
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
@@ -27,7 +26,8 @@ function MapScreen({ navigation, route }) {
 
   useEffect(() => {
     if (route.params?.coordinates) {
-      console.log(route.params.coordinates);
+      const newCoords = [...coords, ...route.params.coordinates];
+      setCoords(newCoords);
     }
   }, [route.params?.coordinates]);
 
@@ -49,6 +49,9 @@ function MapScreen({ navigation, route }) {
           latitudeDelta: 0.0522,
           longitudeDelta: 0.0121
         }}>
+          {coords.length > 0 && <Polyline coordinates={coords} strokeColor="#000"
+          fillColor="#3155A6"
+          strokeWidth={5} />}
       </MapView>
       <View style={styles.myButton}>
         <Button
