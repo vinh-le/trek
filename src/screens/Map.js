@@ -62,7 +62,8 @@ function MapScreen({ navigation, route }) {
           color="#FFFFFF"
           onPress={() => navigation.navigate('Trek', {
             latitude: lat,
-            longitude: lon
+            longitude: lon,
+            coordinates: coords
           })}
         />
       </View>

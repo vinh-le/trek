@@ -77,7 +77,8 @@ function TrekScreen({ route, navigation }) {
             parks: parks,
             nature: nature,
             drinks: drinks,
-            water: water
+            water: water,
+            coordinates: route.params.coordinates
           })}
         />
         </View>

@@ -26,7 +26,7 @@ const getDirection = async (lat, lon, d, parks, water, nature, drinks) => {
 };
 
 const handleGetDirections = async (lat, lon, d) => {
-  new_lat = (lat) + (d) / 69
+  var new_lat = (lat) + (d) / 69
   const data = {
     source: {
       latitude: lat,
@@ -53,7 +53,6 @@ const handleGetDirections = async (lat, lon, d) => {
       }
     ]
   }
-
   getDirections(data)
 }
 
@@ -68,6 +67,8 @@ const TrekRouteScreen = ({ route, navigation }) => {
   const { nature } = route.params;
   const { water } = route.params;
   const { drinks } = route.params;
+
+  const { coordinates } = route.params;
 
   useEffect(() => {
     getDirection(latitude, longitude, distance, parks, water, nature, drinks)
@@ -87,6 +88,9 @@ const TrekRouteScreen = ({ route, navigation }) => {
           longitudeDelta: 0.0121
         }}
       >
+        {coordinates.length > 0 && <Polyline coordinates={coordinates} strokeColor="#000"
+          fillColor="#3155A6"
+          strokeWidth={5} />}
         {coords.length > 0 && <Polyline coordinates={coords} strokeColor="#000"
           fillColor="#085400"
           strokeWidth={5} />}
