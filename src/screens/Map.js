@@ -53,6 +53,9 @@ function MapScreen({ navigation, route }) {
           fillColor="#3155A6"
           strokeWidth={5} />}
       </MapView>
+      <View style={styles.container}>
+        <Text style={styles.description}>My Completed Routes</Text>
+      </View>
       <View style={styles.myButton}>
         <Button
           title="Start New Trek"
@@ -76,6 +79,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     top: 560,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
+  },
+  description: {
+    fontSize:22,
+    textAlign: 'center'
+  },
+  container: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    backgroundColor:'#FFFFFF',
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 50,  // CHANGE THIS TO PERCENTAGE VALUE SOMEHOW
   }
 });
 
