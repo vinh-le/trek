@@ -6,10 +6,10 @@ import TrekScreen from "./Trek";
 import { StyleSheet} from "react-native";
 import getDirections from "react-native-google-maps-directions";
 
-const getDirection = async (lat, lon, d) => {
+const getDirection = async (lat, lon, d, parks, water, nature, drinks) => {
   try {
     let resp = await fetch(
-      `https://trek-api.herokuapp.com/route/${lat}/${lon}/${d}`
+      `https://trek-api.herokuapp.com/route/${lat}/${lon}/${d}/${parks}/${water}/${nature}/${drinks}`
     );
     let respJson = await resp.json();
     let points = decode(respJson.routes[0].overview_polyline.points);
@@ -64,9 +64,13 @@ const TrekRouteScreen = ({ route, navigation }) => {
   const { latitude } = route.params;
   const { longitude } = route.params;
   const { distance } = route.params;
+  const { parks } = route.params;
+  const { nature } = route.params;
+  const { water } = route.params;
+  const { drinks } = route.params;
 
   useEffect(() => {
-    getDirection(latitude, longitude, distance)
+    getDirection(latitude, longitude, distance, parks, water, nature, drinks)
       .then(coords => setCoords(coords))
       .catch(err => console.log("Something went wrong"));
   }, [count]);
