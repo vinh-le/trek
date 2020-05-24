@@ -88,7 +88,7 @@ const TrekRouteScreen = ({ route, navigation }) => {
         }}
       >
         {coords.length > 0 && <Polyline coordinates={coords} strokeColor="#000"
-          fillColor="#3155A6"
+          fillColor="#085400"
           strokeWidth={5} />}
       </MapView>
       <View style={styles.myButton2}>
