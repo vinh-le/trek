@@ -25,14 +25,14 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.backyard.trek",
       "config": {
-        "googleMapsApiKey": "AIzaSyAac5tOicMokTqwuESzmMN8ltnG_ZpS0MI"
+        "googleMapsApiKey": ""
       }
     },
     "android": {
       "package": "com.backyard.trek",
       "versionCode": 1,
       "config": {
-        "googleMaps": { "apiKey": "AIzaSyAZSuS6BQIySQvETRsbELKaANykKkdQGlw"}
+        "googleMaps": { "apiKey": ""}
       }
     }
   }
